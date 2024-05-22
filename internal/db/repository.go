@@ -3,7 +3,7 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	"lamoda_test/config"
+	"warehouse-api/internal/config"
 )
 
 func Connect(cfg config.DBConfig) (*sql.DB, error) {

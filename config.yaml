@@ -1,0 +1,11 @@
+db:
+  driver: "pgx"
+  host: "localhost"
+  port: 5432
+  user: "test_user"
+  password: "test_password"
+  dbname: "warehouse_db"
+  sslmode: "disable"
+
+server:
+  address: ":8080"
