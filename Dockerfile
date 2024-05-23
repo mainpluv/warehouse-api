@@ -1,20 +1,15 @@
-# Используйте официальный образ golang в качестве базового
-FROM golang:1.22.3
+FROM golang:1.22-alpine
 
-# Установите рабочую директорию внутри контейнера
 WORKDIR /app
 
-# Скопируйте go.mod и go.sum в рабочую директорию
-COPY go.mod go.sum ./
-
-# Загрузите зависимости
+COPY go.mod ./
+COPY go.sum ./
 RUN go mod download
 
-# Скопируйте остальные файлы в рабочую директорию
-COPY . .
+COPY . ./
 
-# Соберите приложение
-RUN go build -o warehouse-api ./cmd/warehouse-api
+RUN go build -o /warehouse cmd/main.go
 
-# Запустите приложение
-CMD ["./warehouse-api"]
+EXPOSE 8080
+
+CMD ["/warehouse"]

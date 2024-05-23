@@ -1,10 +1,10 @@
 db:
   driver: "pgx"
-  host: "localhost"
-  port: 5432
-  user: "test_user"
-  password: "test_password"
-  dbname: "warehouse_db"
+  host: ${DB_HOST}
+  port: ${DB_PORT}
+  user: ${BD_USER}
+  password: ${BD_PASSWORD}
+  dbname: ${DB_NAME}
   sslmode: "disable"
 
 server:

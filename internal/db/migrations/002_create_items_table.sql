@@ -1,6 +1,0 @@
-CREATE TABLE items (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    size VARCHAR(50),
-    code VARCHAR(50) UNIQUE NOT NULL
-);
