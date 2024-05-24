@@ -7,10 +7,20 @@ import (
 	"warehouse-api/pkg/repository"
 )
 
+// контракт для сервиса
+type ServiceInterface interface {
+	ReserveProducts(ctx context.Context, codes []string) error
+	ReleaseProducts(ctx context.Context, codes []string) error
+	GetWarehouseStock(ctx context.Context, warehouseID int) ([]model.Product, error)
+	GetReservedStock(ctx context.Context, warehouseID int) ([]model.Product, error)
+}
+
+// методы для взаимодействия с хранилищем
 type Service struct {
 	repo *repository.Repository
 }
 
+// новый экземпляр сервиса
 func NewService(repo *repository.Repository) *Service {
 	return &Service{repo: repo}
 }
@@ -25,4 +35,8 @@ func (s *Service) ReleaseProducts(ctx context.Context, codes []string) error {
 
 func (s *Service) GetWarehouseStock(ctx context.Context, warehouseID int) ([]model.Product, error) {
 	return s.repo.GetStock(ctx, strconv.Itoa(warehouseID))
+}
+
+func (s *Service) GetReservedStock(ctx context.Context, warehouseID int) ([]model.Product, error) {
+	return s.repo.GetReservedStock(ctx, warehouseID)
 }

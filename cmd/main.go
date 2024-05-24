@@ -11,6 +11,7 @@ import (
 	"github.com/spf13/viper"
 )
 
+// точка входа
 func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -18,7 +19,7 @@ func main() {
 	cfg := config.LoadConfig()
 	db, err := repository.NewPostgresDB(ctx, cfg)
 	if err != nil {
-		log.Fatalf("Failed to connect to database: %v", err)
+		log.Fatalf("failed to connect to database: %v", err)
 	}
 
 	repo := repository.NewRepository(db)
@@ -27,8 +28,8 @@ func main() {
 
 	router := api.NewRouter(handler)
 
-	log.Println("Starting server on port 8080")
+	log.Println("starting server on port 8080")
 	if err := router.Start(viper.GetString("server.address")); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
+		log.Fatalf("failed to start server: %v", err)
 	}
 }

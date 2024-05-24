@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+# скрипт на создание бд и пользователя при запуске
 psql -v ON_ERROR_STOP=1 --username "$DB_USER" --dbname "$DB_NAME" <<-EOSQL
     DO
     \$\$

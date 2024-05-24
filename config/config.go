@@ -22,7 +22,7 @@ func LoadConfig() *Config {
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Error reading config file: %v", err)
 	}
-
+	log.Println("config is received")
 	return &Config{
 		DBHost:     viper.GetString("db.host"),
 		DBPort:     viper.GetString("db.port"),
